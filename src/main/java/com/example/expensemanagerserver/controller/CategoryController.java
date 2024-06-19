@@ -2,6 +2,7 @@ package com.example.expensemanagerserver.controller;
 
 import com.example.expensemanagerserver.model.Category;
 import com.example.expensemanagerserver.repository.CategoryRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         Category savedCategory = categoryRepository.save(category);
         return ResponseEntity.ok(savedCategory);
     }
