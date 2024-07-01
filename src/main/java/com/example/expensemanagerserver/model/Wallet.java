@@ -15,7 +15,7 @@ public class Wallet {
     private Long id;
     private String name;
     @Enumerated(EnumType.STRING)
-    private WalltetType type;
+    private WalletType type;
     private double balance;
     @CreationTimestamp
     private Timestamp created_at;
@@ -26,7 +26,7 @@ public class Wallet {
     @JoinColumn(name="currency_id", nullable = false)
     private Currency currency;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 

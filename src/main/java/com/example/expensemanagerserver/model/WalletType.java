@@ -1,5 +1,5 @@
 package com.example.expensemanagerserver.model;
 
-public enum WalltetType {
+public enum WalletType {
     CASH, BANK_ACCOUNT
 }
