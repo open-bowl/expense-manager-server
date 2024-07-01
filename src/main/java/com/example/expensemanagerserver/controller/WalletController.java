@@ -1,6 +1,5 @@
 package com.example.expensemanagerserver.controller;
 
-import com.example.expensemanagerserver.model.User;
 import com.example.expensemanagerserver.model.Wallet;
 import com.example.expensemanagerserver.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,9 @@ public class WalletController {
     @Autowired
     private WalletRepository walletRepository;
 
-    @GetMapping("/wallet/{id}")
-    public ResponseEntity<Iterable<Wallet>> getWallet(@PathVariable Long id){
-        Iterable<Wallet> wallets =  walletRepository.findWalletByUserId(id);
+    @GetMapping("/wallet/{userId}")
+    public ResponseEntity<Iterable<Wallet>> getWallet(@PathVariable("userId") Long userId){
+        Iterable<Wallet> wallets =  walletRepository.findWalletByUserId(userId);
         return ResponseEntity.ok(wallets);
     }
 
