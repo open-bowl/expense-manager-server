@@ -19,7 +19,6 @@ public class Category {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Type is required")
-  
     private CategoryType type;
 
 
