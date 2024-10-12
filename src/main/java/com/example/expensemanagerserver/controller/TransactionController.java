@@ -51,6 +51,7 @@ public class TransactionController {
             }
             walletDetails.setBalance(currentBalance);
             walletRepository.save(walletDetails);
+            return ResponseEntity.ok(savedTransaction);
         }
 
         throw new BadRequestException("Wallet not found");
