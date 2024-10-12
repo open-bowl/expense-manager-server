@@ -17,6 +17,12 @@ public class WalletController {
         return ResponseEntity.ok(wallets);
     }
 
+    @GetMapping("/wallet/user/{userId}")
+    public ResponseEntity<Iterable<Wallet>> getUserWallets(@PathVariable("userId") Long userId){
+        Iterable<Wallet> wallets =  walletRepository.findWalletByUserId(userId);
+        return ResponseEntity.ok(wallets);
+    }
+
     @PostMapping("/wallet")
     public ResponseEntity<Wallet> saveWallet(@RequestBody Wallet wallet){
         Wallet savedWallet = walletRepository.save(wallet);
