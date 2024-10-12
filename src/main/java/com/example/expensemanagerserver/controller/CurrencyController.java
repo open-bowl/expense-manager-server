@@ -1,9 +1,11 @@
 package com.example.expensemanagerserver.controller;
 
+import com.example.expensemanagerserver.exception.BadRequestException;
 import com.example.expensemanagerserver.model.Currency;
 import com.example.expensemanagerserver.repository.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
@@ -35,17 +37,15 @@ public class CurrencyController {
                 Currency existingValue = updatedCurrency.get();
                 Field[] fields = currency.getClass().getDeclaredFields();
                 for (Field field : fields) {
-                    // To access the private member
-                    field.setAccessible(true);
-                    Object value = field.get(currency);
+                    ReflectionUtils.makeAccessible(field);
+                    Object value = ReflectionUtils.getField(field, currency);
                     if (value != null) {
-                        field.set(existingValue, value);
+                        ReflectionUtils.setField(field, existingValue, value);
                     }
                 }
-                // Save the updated entity back to the repository
                 return ResponseEntity.ok(currencyRepository.save(existingValue));
             } else {
-                return ResponseEntity.ok(currencyRepository.save(currency));
+                throw new BadRequestException("Invalid update request");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
