@@ -25,5 +25,6 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @NotNull(message = "User is required")
+  
     private User user;
 }
