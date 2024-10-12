@@ -1,5 +1,6 @@
 package com.example.expensemanagerserver.controller;
 
+import com.example.expensemanagerserver.exception.BadRequestException;
 import com.example.expensemanagerserver.model.CategoryType;
 import com.example.expensemanagerserver.model.Transaction;
 import com.example.expensemanagerserver.model.Wallet;
@@ -7,6 +8,7 @@ import com.example.expensemanagerserver.repository.TransactionRepository;
 import com.example.expensemanagerserver.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -33,6 +35,7 @@ public class TransactionController {
     }
 
     @PostMapping("/transaction")
+    @Transactional
     public ResponseEntity<Transaction> saveTransaction(@RequestBody Transaction transaction) {
         Transaction savedTransaction = transactionRepository.save(transaction);
         // update wallet
@@ -50,6 +53,6 @@ public class TransactionController {
             walletRepository.save(walletDetails);
         }
 
-        return ResponseEntity.ok(savedTransaction);
+        throw new BadRequestException("Wallet not found");
     }
 }
