@@ -17,10 +17,6 @@ public class Wallet {
     @Enumerated(EnumType.STRING)
     private WalletType type;
     private double balance;
-    @CreationTimestamp
-    private Timestamp created_at;
-    @UpdateTimestamp
-    private Timestamp modified_at;
 
     @ManyToOne
     @JoinColumn(name="currency_id", nullable = false)
@@ -29,5 +25,12 @@ public class Wallet {
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     private User user;
+
+
+    @CreationTimestamp
+    private Timestamp created_at;
+    @UpdateTimestamp
+    private Timestamp modified_at;
+
 
 }

@@ -16,6 +16,7 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     public String name;
+
     @CreationTimestamp
     private Timestamp created_at;
     @UpdateTimestamp

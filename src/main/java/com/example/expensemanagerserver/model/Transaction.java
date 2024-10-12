@@ -19,10 +19,6 @@ public class Transaction {
     private String description;
     @Enumerated(EnumType.STRING)
     private CategoryType type;
-    @CreationTimestamp
-    private Timestamp created_at;
-    @UpdateTimestamp
-    private Timestamp modified_at;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
@@ -35,4 +31,10 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name="wallet_id", nullable = false)
     private Wallet wallet;
+
+
+    @CreationTimestamp
+    private Timestamp created_at;
+    @UpdateTimestamp
+    private Timestamp modified_at;
 }
