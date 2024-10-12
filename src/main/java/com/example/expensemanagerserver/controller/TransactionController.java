@@ -38,6 +38,9 @@ public class TransactionController {
     @Transactional
     public ResponseEntity<Transaction> saveTransaction(@RequestBody Transaction transaction) {
         Transaction savedTransaction = transactionRepository.save(transaction);
+        if(transaction.getAmount() <= 0) {
+            throw new BadRequestException("Amount should be greater than 0");
+        }
         // update wallet
         Optional<Wallet> wallet = walletRepository.findById(transaction.getWallet().getId());
         if (wallet.isPresent()) {
