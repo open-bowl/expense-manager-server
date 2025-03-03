@@ -117,7 +117,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to the contributors:
-  - [DharanBro (Giridharan Rengarajan)](https://github.com/DharanBro)
   - [manikandanvengatesan (Manikandan Venkatesan)](https://github.com/manikandanvengatesan)
   - [pragathi-mani](https://github.com/pragathi-mani)
 
